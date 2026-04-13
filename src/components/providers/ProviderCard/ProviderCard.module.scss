@@ -1,0 +1,357 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.providerCard {
+  position: relative;
+  overflow: hidden;
+  background-color: color-mix(in srgb, var(--bg-primary) 85%, transparent);
+  --glass-blur: 8px;
+  backdrop-filter: var(--glass-backdrop-filter);
+  -webkit-backdrop-filter: var(--glass-backdrop-filter);
+  border: 1px solid color-mix(in srgb, var(--border-color) 70%, transparent);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  transition:
+    transform $transition-fast,
+    box-shadow $transition-fast,
+    border-color $transition-fast;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.15);
+    border-color: color-mix(in srgb, var(--primary-color) 28%, var(--border-color));
+  }
+}
+
+.providerCardDisabled {
+  opacity: 0.72;
+
+  &:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--border-color);
+  }
+}
+
+// Header
+.providerCardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.providerAvatar {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
+  background: color-mix(in srgb, var(--bg-secondary) 60%, transparent);
+}
+
+.providerAvatarImage {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.providerCardTitleWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.providerCardTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.providerCardTitle {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.providerCardIndex {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+}
+
+.providerCardBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  color: var(--warning-text);
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
+}
+
+// Content area (meta fields, models, etc.)
+.providerCardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+// Meta field row (label: value)
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.metaLabel {
+  color: var(--text-tertiary);
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 12px;
+}
+
+.metaValue {
+  color: var(--text-primary);
+  font-weight: 600;
+  word-break: break-all;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Ubuntu Mono', monospace;
+  font-size: 12px;
+}
+
+// Header badges (custom HTTP headers)
+.headerBadgeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.headerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--accent-tertiary, #f3f4f6);
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+  padding: 3px 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+
+  strong {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+}
+
+// Model tags
+.modelTagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+}
+
+.modelCountLabel {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.modelTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-quinary, #f8f9fa);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-secondary);
+  border-radius: 14px;
+  padding: 3px 8px;
+  font-size: 11px;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--primary-color);
+  }
+}
+
+.modelName {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.modelAlias {
+  color: var(--text-tertiary);
+  font-style: italic;
+
+  &::before {
+    content: '→ ';
+  }
+}
+
+// Excluded models
+.excludedModelsSection {
+  margin-top: 4px;
+}
+
+.excludedModelsLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--warning-text, #92400e);
+  margin-bottom: 4px;
+}
+
+.excludedModelTag {
+  background: var(--warning-bg, #fef3c7);
+  border-color: var(--warning-border, #fbbf24);
+  color: var(--warning-text, #92400e);
+
+  .modelName {
+    color: var(--warning-text, #92400e);
+  }
+}
+
+// Stats + Status Bar
+.providerCardInsights {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid color-mix(in srgb, var(--border-color) 50%, transparent);
+}
+
+.providerCardStats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.statPill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  min-width: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.statSuccess {
+  background: color-mix(in srgb, var(--success-badge-bg, #d1fae5) 50%, transparent);
+  color: var(--success-badge-text, #065f46);
+}
+
+.statFailure {
+  background: color-mix(in srgb, var(--failure-badge-bg) 50%, transparent);
+  color: var(--failure-badge-text);
+}
+
+// Actions
+.providerCardActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid color-mix(in srgb, var(--border-color) 50%, transparent);
+}
+
+.providerCardActionsMain {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.statusToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.statusToggleLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+}
+
+// Mobile
+@include mobile {
+  .providerCardActions {
+    flex-wrap: wrap;
+  }
+
+  .providerCardActionsMain {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .statusToggle {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+// Dark theme
+:global([data-theme='dark']) {
+  .headerBadge {
+    background: rgba($primary-color, 0.14);
+    border-color: rgba($primary-color, 0.35);
+    color: var(--text-secondary);
+
+    strong {
+      color: var(--text-secondary);
+    }
+  }
+
+  .modelTag {
+    background: rgba($primary-color, 0.1);
+    border-color: var(--border-secondary);
+  }
+
+  .excludedModelTag {
+    background: rgba($warning-color, 0.22);
+    border-color: rgba($warning-color, 0.55);
+    color: var(--warning-color);
+
+    .modelName {
+      color: var(--warning-color);
+    }
+  }
+
+  .excludedModelsLabel {
+    color: var(--warning-color);
+  }
+}

@@ -108,6 +108,61 @@
   }
 }
 
+// Provider card grid layout
+.providerSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.sectionIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.countBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  min-width: 22px;
+  padding: 0 7px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--count-badge-text);
+  background-color: var(--count-badge-bg);
+  box-sizing: border-box;
+}
+
+.providerGrid {
+  display: grid;
+  gap: $spacing-md;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
 // 成功失败次数统计样式
 .cardStats {
   display: flex;

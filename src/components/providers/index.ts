@@ -3,6 +3,8 @@ export { ClaudeSection } from './ClaudeSection';
 export { CodexSection } from './CodexSection';
 export { GeminiSection } from './GeminiSection';
 export { OpenAISection } from './OpenAISection';
+export { ProviderCard } from './ProviderCard/ProviderCard';
+export type { ProviderCardProps } from './ProviderCard/ProviderCard';
 export { VertexSection } from './VertexSection';
 export { ProviderList } from './ProviderList';
 export { ProviderStatusBar } from './ProviderStatusBar';
